@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>销售</title>
+		<link rel="stylesheet" type="text/css" href="css/navbar.css">
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+			}
+
+			.container {
+				margin: 20px 20px;
+				padding: 20px;
+				border: 1px solid #ccc;
+				border-radius: 8px;
+			}
+
+			label {
+				display: block;
+				margin-bottom: 8px;
+			}
+
+			input[type="text"] {
+				width: 100%;
+				padding: 8px;
+				margin-bottom: 16px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+			}
+
+			.radio-group {
+				margin-bottom: 16px;
+			}
+
+			.radio-group label {
+				display: inline-block;
+				margin-right: 10px;
+			}
+
+			button {
+				width: 100%;
+				padding: 10px;
+				background-color: #4CAF50;
+				color: white;
+				border: none;
+				border-radius: 4px;
+				cursor: pointer;
+			}
+
+			button:hover {
+				background-color: #45a049;
+			}
+
+			table {
+				width: 100%;
+				border-collapse: collapse;
+			}
+
+			table,
+			th,
+			td {
+				border: 1px solid #ccc;
+			}
+
+			th,
+			td {
+				padding: 8px;
+				text-align: left;
+			}
+		</style>
+		<script src="js/v3.2.8/vue.global.prod.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<div class="navbar">
+				<a href="./index.html">销售</a>
+				<a href="./count.html">统计</a>
+			</div>
+			<div class="container">
+				<h1>支付</h1>
+				<form @submit.prevent="submitForm">
+					<label for="amount">输入金额：</label>
+					<input type="text" v-model="amount" id="amount" required>
+					<label for="price">输入单价：</label>
+					<input type="text" v-model="price" id="price" required>
+					<div class="radio-group">
+						<label>选择支付方式：</label>
+						<label><input type="radio" v-model="paymentMethod" name="pay" value="现金" required>现金</label>
+						<label><input type="radio" v-model="paymentMethod" name="pay" value="微信" required>微信</label>
+					</div>
+					<button type="submit">提交</button>
+				</form>
+				<br>
+				<button @click="revoke">撤销</button>
+			</div>
+			<div class="container">
+				<table id="soldList">
+					<thead>
+						<tr>
+							<td>编号</td>
+							<td>时间</td>
+							<td>金额</td>
+							<td>单价</td>
+							<td>支付方式</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="(item, index) in soldList" :key="index">
+							<td>{{ soldList.length - index }}</td>
+							<td>{{ item.time }}</td>
+							<td>{{ item.amount }}</td>
+							<td>{{ item.price }}</td>
+							<td>{{ item.paymentMethod }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<script src="js/main.js"></script>
+	</body>
+</html>
