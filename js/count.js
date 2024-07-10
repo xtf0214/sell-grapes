@@ -14,6 +14,7 @@ function timeCount() {
     const endTime = soldList[0]['time'].substring(0, 5);
     const timeRange = generateTimeRange(startTime, endTime);
 	let totalSales = 0, totalQuantity = 0;
+	let totalWechatSales = 0, totalCashSales = 0;
     let soldCountByTime = {};
     timeRange.forEach(time => {
         soldCountByTime[time] = 0;
@@ -22,11 +23,20 @@ function timeCount() {
         const time = item['time'].substring(0, 5);
 		const amount = parseFloat(item['amount']);
 		const price = parseFloat(item['price']);
+	    const payment = item["paymentMethod"];
         soldCountByTime[time] += amount;
 		totalSales += amount;
 		totalQuantity += amount / price;
+	    if (payment == "微信")
+                totalWechatSales += amount;
+	    else
+		totalCashSales += amount;
+		
+		    
     });
 	document.querySelector("#totalSales").textContent = '总销售额：' + totalSales + ' 元';
+	document.querySelector("#totalWechatSales").textContent = '微信总额：' + totalWechatSales + ' 元';
+	document.querySelector("#totalCashSales").textContent = '现金总额：' + totalCashSales + ' 元';
 	document.querySelector("#totalQuantity").textContent = '总销售量：' + parseInt(totalQuantity) + ' 斤';
     const timeCountctx = document.getElementById('timeCount');
     new Chart(timeCountctx, {
