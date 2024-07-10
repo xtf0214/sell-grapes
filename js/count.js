@@ -27,7 +27,7 @@ function timeCount() {
         soldCountByTime[time] += amount;
 		totalSales += amount;
 		totalQuantity += amount / price;
-	    if (payment == "微信")
+	    if (payment === "微信")
                 totalWechatSales += amount;
 	    else
 		totalCashSales += amount;
