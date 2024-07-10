@@ -1,60 +1,61 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>统计</title>
-		<link rel="stylesheet" type="text/css" href="css/navbar.css">
-		<style>
-			body {
-				font-family: Arial, sans-serif;
-				margin: 0;
-				padding: 0;
-			}
 
-			.container {
-				margin: 20px 20px;
-				padding: 20px;
-				border: 1px solid #ccc;
-				border-radius: 8px;
-			}
-		</style>
-		<script src="js/chart.js"></script>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>统计</title>
+	<link rel="stylesheet" type="text/css" href="css/navbar.css">
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
 
-	<body>
-		<div id="app">
-			<div class="navbar">
-				<a href="./index.html">销售</a>
-				<a href="./count.html">统计</a>
-			</div>
-			<div class="container">
-				<h1>统计</h1>
-				<div class="container">
-					<div>
-						<strong id='totalSales'>总销售额：</strong>
-					</div>
-					<div>
-						<strong id='totalWeChatSales'>总销售额：</strong>
-					</div>
-					<div>
-						<strong id='totalCashSales'>总销售额：</strong>
-					</div>
-					<div>
-						<strong id="totalQuantity">总销售量：</strong>
-					</div>
-				</div>
-				<canvas id="soldCount"></canvas>
-				<canvas id="timeCount"></canvas>
-				<canvas id="dayCount"></canvas>
-				<canvas id="daySold"></canvas>
-				<script src="js/count.js"></script>
-			</div>
-			<script>
-				loadData();
-				timeCount();
-			</script>
+		.container {
+			margin: 20px 20px;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 8px;
+		}
+	</style>
+	<script src="js/chart.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<div class="navbar">
+			<a href="./index.html">销售</a>
+			<a href="./count.html">统计</a>
 		</div>
-	</body>
+		<div class="container">
+			<h1>统计</h1>
+			<div class="container">
+				<div>
+					<strong id='totalSales'>总销售额：</strong>
+				</div>
+				<div>
+					<strong id='totalWeChatSales'>微信总额：</strong>
+				</div>
+				<div>
+					<strong id='totalCashSales'>现金总额：</strong>
+				</div>
+				<div>
+					<strong id="totalQuantity">总销售量：</strong>
+				</div>
+			</div>
+			<canvas id="soldCount"></canvas>
+			<canvas id="timeCount"></canvas>
+			<canvas id="dayCount"></canvas>
+			<canvas id="daySold"></canvas>
+			<script src="js/count.js"></script>
+		</div>
+		<script>
+			loadData();
+			timeCount();
+		</script>
+	</div>
+</body>
 
 </html>

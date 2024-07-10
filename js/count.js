@@ -3,7 +3,7 @@ let soldList = [];
 function loadData() {
     const today = new Date().toLocaleDateString();
     if (localStorage.getItem(today) == null) {
-        localStorage.setItem(today, JSON.stringify({'soldList': soldList }));
+        localStorage.setItem(today, JSON.stringify({ 'soldList': soldList }));
     } else {
         const tmp = JSON.parse(localStorage.getItem(today));
         soldList = tmp.soldList;
@@ -13,31 +13,29 @@ function timeCount() {
     const startTime = soldList[soldList.length - 1]['time'].substring(0, 5);
     const endTime = soldList[0]['time'].substring(0, 5);
     const timeRange = generateTimeRange(startTime, endTime);
-	let totalSales = 0, totalQuantity = 0;
-	let totalWechatSales = 0, totalCashSales = 0;
+    let totalSales = 0, totalQuantity = 0;
+    let totalWechatSales = 0, totalCashSales = 0;
     let soldCountByTime = {};
     timeRange.forEach(time => {
         soldCountByTime[time] = 0;
     });
     soldList.forEach(item => {
         const time = item['time'].substring(0, 5);
-		const amount = parseFloat(item['amount']);
-		const price = parseFloat(item['price']);
-	    const payment = item["paymentMethod"];
+        const amount = parseFloat(item['amount']);
+        const price = parseFloat(item['price']);
+        const payment = item["paymentMethod"];
         soldCountByTime[time] += amount;
-		totalSales += amount;
-		totalQuantity += amount / price;
-	    if (payment === "微信")
-                totalWechatSales += amount;
-	    else
-		totalCashSales += amount;
-		
-		    
+        totalSales += amount;
+        totalQuantity += amount / price;
+        if (payment == "微信")
+            totalWechatSales += amount;
+        else
+            totalCashSales += amount;
     });
-	document.querySelector("#totalSales").textContent = '总销售额：' + totalSales + ' 元';
-	document.querySelector("#totalWechatSales").textContent = '微信总额：' + totalWechatSales + ' 元';
-	document.querySelector("#totalCashSales").textContent = '现金总额：' + totalCashSales + ' 元';
-	document.querySelector("#totalQuantity").textContent = '总销售量：' + parseInt(totalQuantity) + ' 斤';
+    document.querySelector("#totalSales").textContent = '总销售额：' + totalSales + ' 元';
+    document.querySelector("#totalWeChatSales").textContent = '微信总额：' + totalWechatSales + ' 元';
+    document.querySelector("#totalCashSales").textContent = '现金总额：' + totalCashSales + ' 元';
+    document.querySelector("#totalQuantity").textContent = '总销售量：' + parseInt(totalQuantity) + ' 斤';
     const timeCountctx = document.getElementById('timeCount');
     new Chart(timeCountctx, {
         type: 'bar',
@@ -57,9 +55,9 @@ function generateTimeRange(start, end) {
     var endTime = new Date('2000-01-01 ' + end);
     var timeRange = [];
     while (startTime <= endTime) {
-      var time = startTime.toTimeString().substring(0, 5);
-      timeRange.push(time);
-      startTime.setMinutes(startTime.getMinutes() + 1);
+        var time = startTime.toTimeString().substring(0, 5);
+        timeRange.push(time);
+        startTime.setMinutes(startTime.getMinutes() + 1);
     }
     return timeRange;
-  }
+}
