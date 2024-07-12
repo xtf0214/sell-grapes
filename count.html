@@ -45,16 +45,24 @@
 					<strong id="totalQuantity">总销售量：</strong>
 				</div>
 			</div>
-			<canvas id="soldCount"></canvas>
-			<canvas id="timeCount"></canvas>
-			<canvas id="dayCount"></canvas>
-			<canvas id="daySold"></canvas>
-			<script src="js/count.js"></script>
 		</div>
-		<script>
-			loadData();
-			timeCount();
-		</script>
+		<div class="container">
+			<h2>今日销售记录</h2>
+			<canvas id="timeStatisticChart"></canvas>
+		</div>
+		<div class="container">
+			<h2>历史销售记录</h2>
+			<canvas id="dayStatisticChart"></canvas>
+		</div>
+		<script src="js/count.js"></script>
+	</div>
+	<script>
+		loadData();
+		salesStatistic();
+		timeStatisticChart();
+		dayStatisticChart();
+
+	</script>
 	</div>
 </body>
 

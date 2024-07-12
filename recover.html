@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let startTime = new Date("2024/7/7");
+        const endTime = new Date();
+        let dayList = [];
+        for (; startTime <= endTime; startTime.setDate(startTime.getDate() + 1)) {
+            let day = startTime.toLocaleDateString();
+            if (localStorage.getItem(day)) {
+                let data = JSON.parse(localStorage.getItem(day));
+                if (data['salesList'] == null) {
+                    dayList.push(day);
+                    data['salesList'] = data['soldList'];
+                    delete data['soldList'];
+                }
+                localStorage.setItem(day, JSON.stringify(data));
+            }
+        }
+        localStorage.setItem('dayList', JSON.stringify(dayList));
+    </script>
+</body>
+</html>
