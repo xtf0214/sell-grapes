@@ -60,6 +60,9 @@ const App = {
             this.salesList.splice(0, this.salesList.length);
             const today = new Date().toLocaleDateString();
             localStorage.removeItem(today);
+            let dayList = JSON.parse(localStorage.getItem('dayList'));
+            dayList.pop();
+            localStorage.setItem('dayList', JSON.stringify(dayList));
         },
     }
 };

@@ -11,19 +11,17 @@
     <script>
         let startTime = new Date("2024/7/7");
         const endTime = new Date();
-        let dayList = [];
+        let dayList = localStorage.getItem('dayList');
         for (; startTime <= endTime; startTime.setDate(startTime.getDate() + 1)) {
             let day = startTime.toLocaleDateString();
             if (localStorage.getItem(day)) {
-                let data = JSON.parse(localStorage.getItem(day));
-                if (data['salesList'] == null) {
+                if (!(day in dayList)) {
                     dayList.push(day);
-                    data['salesList'] = data['soldList'];
-                    delete data['soldList'];
                 }
                 localStorage.setItem(day, JSON.stringify(data));
             }
         }
+        dayList.sort();
         localStorage.setItem('dayList', JSON.stringify(dayList));
     </script>
 </body>
