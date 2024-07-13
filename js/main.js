@@ -18,6 +18,7 @@ const App = {
             } else {
                 let dayList = JSON.parse(localStorage.getItem('dayList'));
                 dayList.push(today);
+                localStorage.setItem('dayList', JSON.stringify(dayList));
             }
         } else {
             const tmp = JSON.parse(localStorage.getItem(today));
@@ -48,16 +49,14 @@ const App = {
             }
         },
         revoke() {
+            alert("是否撤销上次添加？");
             if (this.salesList.length > 0) {
                 this.salesList.shift();
                 this.saveData();
             }
         },
         clearNum() {
-            this.menuItems.forEach(item => {
-                item.rest = 0;
-                item.sold = 0;
-            });
+            alert("是否清除所有？");
             this.salesList.splice(0, this.salesList.length);
             const today = new Date().toLocaleDateString();
             localStorage.removeItem(today);
