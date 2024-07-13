@@ -79,10 +79,12 @@ function dayStatisticChart() {
     let weChatSalesList = [];
     let cashSalesList = [];
     let totalSalesList = [];
+    let totalSalesVolume = [];
     dayList.forEach(day => {
         totalSalesList.push(calcSalesAmount(day));
         cashSalesList.push(calcSalesAmount(day, "现金"));
         weChatSalesList.push(calcSalesAmount(day, "微信"));
+        totalSalesVolume.push(calcSalesVolume(day));
     });
     const ctx = document.getElementById("dayStatisticChart");
     new Chart(ctx, {
@@ -101,6 +103,10 @@ function dayStatisticChart() {
                 }, {
                     label: "现金",
                     data: cashSalesList,
+                    borderWidth: 2
+                }, {
+                    label: "销量",
+                    data: totalSalesVolume,
                     borderWidth: 2
                 }
             ]
